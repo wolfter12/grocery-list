@@ -17,6 +17,13 @@ function GroceryList() {
       }
       return statusHistory[0].status === filterParam;
     })
+    .sort((a, b) => {
+      const priorityCompare = a.priority - b.priority;
+      if (priorityCompare === 0) {
+        return a.name.localeCompare(b.name);
+      }
+      return priorityCompare;
+    })
     .map((entry) => <Entry key={entry.id} entry={entry} />);
 
   const onFilterSelect = (e) => {
